@@ -48,5 +48,15 @@
     "priceTry": 1500,
     "imageSrc": "/product-placeholder.svg",
     "category": "enjeksiyon-steroidler"
+  },
+  {
+    "id": "8",
+    "slug": "ghjklghjkg",
+    "name": "ghjklghjkg",
+    "description": "jkghkj",
+    "longDescription": "lkjhşlkjkljklj",
+    "priceTry": 5000,
+    "imageSrc": "/uploads/product-1777898168735-zd3qxt.png",
+    "category": "enjeksiyon-steroidler"
   }
 ]
