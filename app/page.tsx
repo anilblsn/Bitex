@@ -2,7 +2,8 @@ import { Navbar } from "@/components/Navbar";
 import { ProductCard } from "@/components/ProductCard";
 import { categoryAnchors, categoryIntros, categoryOrder } from "@/lib/categories";
 import { buildHomePageJsonLd } from "@/lib/json-ld";
-import { featuredProductsSectionId, getFeaturedProductsOrdered } from "@/lib/products";
+import { featuredProductsSectionId } from "@/lib/product-constants";
+import { getFeaturedProductsOrdered } from "@/lib/products";
 
 const heroFeatures = [
   {
@@ -54,8 +55,10 @@ const heroFeatures = [
   },
 ] as const;
 
-export default function HomePage() {
-  const featuredProducts = getFeaturedProductsOrdered();
+export const dynamic = "force-dynamic";
+
+export default async function HomePage() {
+  const featuredProducts = await getFeaturedProductsOrdered();
   const jsonLd = buildHomePageJsonLd(featuredProducts);
 
   return (

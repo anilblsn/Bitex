@@ -4,22 +4,25 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { Navbar } from "@/components/Navbar";
 import { buildProductDetailJsonLd } from "@/lib/json-ld";
-import { featuredProductsSectionId, getAllProductSlugs, getProductBySlug } from "@/lib/products";
+import { featuredProductsSectionId } from "@/lib/product-constants";
+import { getAllProductSlugs, getProductBySlug } from "@/lib/products";
 
 type Props = {
   params: Promise<{ slug: string }>;
 };
 
 /** Sadece tanımlı slug’lar; bilinmeyen URL’ler 404 */
-export const dynamicParams = false;
+export const dynamicParams = true;
+export const dynamic = "force-dynamic";
 
 export async function generateStaticParams() {
-  return getAllProductSlugs().map((slug) => ({ slug }));
+  const slugs = await getAllProductSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
+  const product = await getProductBySlug(slug);
   if (!product) {
     return { title: "Ürün bulunamadı" };
   }
@@ -52,7 +55,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ProductDetailPage({ params }: Props) {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
+  const product = await getProductBySlug(slug);
   if (!product) notFound();
 
   const jsonLd = buildProductDetailJsonLd(product);

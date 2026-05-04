@@ -1,5 +1,6 @@
-import type { Product } from "@/lib/products";
+import type { Product } from "@/lib/product-types";
 import { getSiteUrl } from "@/lib/site";
+import { featuredProductsSectionId } from "@/lib/product-constants";
 
 export function buildHomePageJsonLd(productList: Product[]) {
   const base = getSiteUrl();
@@ -87,7 +88,7 @@ export function buildProductDetailJsonLd(product: Product) {
             "@type": "ListItem",
             position: 2,
             name: "Öne çıkan ürünler",
-            item: `${base}/#one-cikan-urunler`,
+            item: `${base}/#${featuredProductsSectionId}`,
           },
           {
             "@type": "ListItem",

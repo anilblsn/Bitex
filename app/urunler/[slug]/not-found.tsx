@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
-import { featuredProductsSectionId } from "@/lib/products";
+import { featuredProductsSectionId } from "@/lib/product-constants";
 
 export default function ProductNotFound() {
   return (

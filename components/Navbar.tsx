@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 import { categoryAnchors, categoryLabels, categoryOrder } from "@/lib/categories";
-import { featuredProductsSectionId } from "@/lib/products";
+import { featuredProductsSectionId } from "@/lib/product-constants";
 
 /** Kök + hash: alt sayfadayken göreli `#` ana sayfadaki bölüme gitmez */
 const staticLinks = [

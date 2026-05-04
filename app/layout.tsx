@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
 import { getSiteUrl } from "@/lib/site";
+import { StatsTracker } from "@/components/StatsTracker";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -71,6 +72,7 @@ export default function RootLayout({
   return (
     <html lang="tr" className={`${geistSans.variable} h-full scroll-smooth antialiased`}>
       <body className="min-h-full flex flex-col font-sans text-slate-900">
+        <StatsTracker />
         {children}
         <a
           href={whatsappUrl}

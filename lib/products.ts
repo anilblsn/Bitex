@@ -1,18 +1,12 @@
+import "server-only";
 import type { ProductCategoryId } from "@/lib/categories";
+import type { Product } from "@/lib/product-types";
+import { promises as fs } from "node:fs";
+import path from "node:path";
 
-export type Product = {
-  id: string;
-  name: string;
-  description: string;
-  /** Detay sayfası ve zengin snippet için daha uzun metin */
-  longDescription: string;
-  priceTry: number;
-  imageSrc: string;
-  slug: string;
-  category: ProductCategoryId;
-};
+const productsFilePath = path.join(process.cwd(), "data", "products.json");
 
-export const products: Product[] = [
+const defaultProducts: Product[] = [
   {
     id: "1",
     slug: "bpc-157-peptit",
@@ -81,12 +75,44 @@ export const products: Product[] = [
   },
 ];
 
-export function getProductsByCategory(category: ProductCategoryId): Product[] {
+async function readProductsFromFile(): Promise<Product[]> {
+  try {
+    const raw = await fs.readFile(productsFilePath, "utf8");
+    const parsed = JSON.parse(raw) as Product[];
+    if (!Array.isArray(parsed)) return defaultProducts;
+    return parsed;
+  } catch {
+    return defaultProducts;
+  }
+}
+
+async function writeProductsToFile(items: Product[]): Promise<void> {
+  await fs.mkdir(path.dirname(productsFilePath), { recursive: true });
+  await fs.writeFile(productsFilePath, `${JSON.stringify(items, null, 2)}\n`, "utf8");
+}
+
+function slugify(input: string): string {
+  return input
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .replace(/-{2,}/g, "-");
+}
+
+export async function getProducts(): Promise<Product[]> {
+  return readProductsFromFile();
+}
+
+export async function getProductsByCategory(category: ProductCategoryId): Promise<Product[]> {
+  const products = await getProducts();
   return products.filter((p) => p.category === category);
 }
 
 /** Ana sayfadaki öne çıkan grid sırası: sabit seed ile karışık, her derlemede aynı */
-export function getFeaturedProductsOrdered(): Product[] {
+export async function getFeaturedProductsOrdered(): Promise<Product[]> {
+  const products = await getProducts();
   const list = [...products];
   let s = 2166136261;
   for (let i = 0; i < "bitex-featured-v1".length; i++) {
@@ -105,13 +131,51 @@ export function getFeaturedProductsOrdered(): Product[] {
   return list;
 }
 
-/** Navbar / hash bağlantıları için */
-export const featuredProductsSectionId = "one-cikan-urunler" as const;
-
-export function getProductBySlug(slug: string): Product | undefined {
+export async function getProductBySlug(slug: string): Promise<Product | undefined> {
+  const products = await getProducts();
   return products.find((p) => p.slug === slug);
 }
 
-export function getAllProductSlugs(): string[] {
+export async function getAllProductSlugs(): Promise<string[]> {
+  const products = await getProducts();
   return products.map((p) => p.slug);
+}
+
+type CreateProductInput = {
+  name: string;
+  description: string;
+  longDescription: string;
+  priceTry: number;
+  category: ProductCategoryId;
+};
+
+export async function createProduct(input: CreateProductInput): Promise<Product> {
+  const products = await getProducts();
+  const maxId = products.reduce((acc, item) => Math.max(acc, Number(item.id) || 0), 0);
+  const baseSlug = slugify(input.name);
+  const slug = products.some((item) => item.slug === baseSlug) ? `${baseSlug}-${Date.now()}` : baseSlug;
+
+  const product: Product = {
+    id: String(maxId + 1),
+    slug,
+    name: input.name.trim(),
+    description: input.description.trim(),
+    longDescription: input.longDescription.trim(),
+    priceTry: input.priceTry,
+    imageSrc: "/product-placeholder.svg",
+    category: input.category,
+  };
+
+  await writeProductsToFile([...products, product]);
+  return product;
+}
+
+export async function deleteProductById(id: string): Promise<boolean> {
+  const products = await getProducts();
+  const nextProducts = products.filter((item) => item.id !== id);
+  if (nextProducts.length === products.length) {
+    return false;
+  }
+  await writeProductsToFile(nextProducts);
+  return true;
 }

@@ -1,0 +1,52 @@
+[
+  {
+    "id": "2",
+    "slug": "ghrp-6-peptit",
+    "name": "GHRP-6 Peptit",
+    "description": "Büyüme hormonu salınımına yönelik peptit analogları sınıfı.",
+    "longDescription": "GHRP-6 peptit ürünü peptitler kategorisindedir. Seri ve SKT bilgileri ambalajda yer alır; oda sıcaklığından uzak, kuru ve çocukların erişemeyeceği yerde saklayınız.",
+    "priceTry": 449,
+    "imageSrc": "/product-placeholder.svg",
+    "category": "peptitler"
+  },
+  {
+    "id": "3",
+    "slug": "oxandrolon-tablet",
+    "name": "Oxandrolon Tablet",
+    "description": "Oral tablet steroid formu.",
+    "longDescription": "Oxandrolon içeren tablet steroid ürünü, tablet steroidler grubundadır. Kullanım ve dozaj yalnızca etiket ve mevzuata uygun şekilde değerlendirilmelidir; şüphe halinde hekiminize danışınız.",
+    "priceTry": 279,
+    "imageSrc": "/product-placeholder.svg",
+    "category": "tablet-steroidler"
+  },
+  {
+    "id": "4",
+    "slug": "stanozolol-tablet",
+    "name": "Stanozolol Tablet",
+    "description": "Tablet steroid, oral uygulama.",
+    "longDescription": "Stanozolol tablet steroid ürünü tablet steroidler kategorisinde listelenir. Parti takibi ve saklama talimatları için kutudaki bilgilere başvurunuz.",
+    "priceTry": 329,
+    "imageSrc": "/product-placeholder.svg",
+    "category": "tablet-steroidler"
+  },
+  {
+    "id": "5",
+    "slug": "testosteron-enanthate-enjeksiyon",
+    "name": "Testosteron Enanthate Enjeksiyon",
+    "description": "Enjeksiyonluk steroid çözeltisi.",
+    "longDescription": "Testosteron enanthate enjeksiyon formu, enjeksiyon steroidler grubundadır. Steril uygulama ve depolama kurallarına uyunuz; kullanım öncesi ambalaj ve insert bilgilerini okuyunuz.",
+    "priceTry": 519,
+    "imageSrc": "/product-placeholder.svg",
+    "category": "enjeksiyon-steroidler"
+  },
+  {
+    "id": "7",
+    "slug": "deneme-urunu",
+    "name": "deneme ürünü",
+    "description": "deneme kısa açıklama",
+    "longDescription": "denem uzun açıklama",
+    "priceTry": 1500,
+    "imageSrc": "/product-placeholder.svg",
+    "category": "enjeksiyon-steroidler"
+  }
+]
