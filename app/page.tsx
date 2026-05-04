@@ -150,7 +150,7 @@ export default function HomePage() {
                 Öne çıkan ürünler
               </h2>
               <p className="mt-3 text-slate-600">
-                Seçili ürünler karışık sırada listelenir; karttan detay sayfasına gidebilirsiniz.
+                Peptit ve steroid ürünleri karışık sırada listelenir; karttan detay sayfasına gidebilirsiniz.
               </p>
             </div>
 

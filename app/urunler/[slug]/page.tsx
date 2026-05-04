@@ -114,8 +114,8 @@ export default async function ProductDetailPage({ params }: Props) {
             </div>
 
             <div className="mt-10 rounded-xl border border-amber-200 bg-amber-50/80 p-4 text-sm text-amber-950">
-              <strong className="font-semibold">Önemli:</strong> Takviye edici gıdalar normal beslenmenin yerine geçmez.
-              Hastalıkların teşhis ve tedavisi için doktorunuza başvurunuz.
+              <strong className="font-semibold">Önemli:</strong> Bu sayfa tanıtım amaçlıdır. Kullanım, mevzuat ve etiket
+              bilgilerine tabidir; sağlık kararlarınız için hekiminize danışınız.
             </div>
 
             <Link
