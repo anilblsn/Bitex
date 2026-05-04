@@ -2,7 +2,7 @@ import { Navbar } from "@/components/Navbar";
 import { ProductCard } from "@/components/ProductCard";
 import type { Metadata } from "next";
 import { categoryAnchors, categoryIntros, categoryOrder } from "@/lib/categories";
-import { buildHomePageJsonLd } from "@/lib/json-ld";
+import { buildHomePageFaqJsonLd, buildHomePageJsonLd } from "@/lib/json-ld";
 import { featuredProductsSectionId } from "@/lib/product-constants";
 import { getFeaturedProductsOrdered } from "@/lib/products";
 
@@ -71,17 +71,36 @@ export const metadata: Metadata = {
     "steroid urunleri",
   ],
   alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    locale: "tr_TR",
+    url: "/",
+    title: "Bitex | Sporcu Besinleri, Bulk ve Definasyon",
+    description:
+      "Vucut gelistirme surecine uygun sporcu besinleri ve takviye kategorileri: bulk, definasyon, peptit ve steroid urunleri.",
+    siteName: "Bitex",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Bitex | Sporcu Besinleri ve Takviyeler",
+    description: "Bulk ve definasyon odakli sporcu besinleri, peptit ve steroid urunleri.",
+  },
 };
 
 export default async function HomePage() {
   const featuredProducts = await getFeaturedProductsOrdered();
   const jsonLd = buildHomePageJsonLd(featuredProducts);
+  const faqJsonLd = buildHomePageFaqJsonLd();
 
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       <Navbar />
       <main>
@@ -193,6 +212,36 @@ export default async function HomePage() {
               hedeflerine, definasyon döneminde ise daha kontrollü beslenme planlarına eşlik edebilecek ürün kategorileri
               sunar. Ürünleri kategori, içerik ve fiyat bazında karşılaştırarak kendi antrenman planınıza uygun seçim yapabilirsiniz.
             </p>
+          </div>
+        </section>
+
+        <section className="border-t border-slate-100 bg-slate-50 py-14 sm:py-16" aria-labelledby="faq-heading">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <h2 id="faq-heading" className="text-2xl font-bold text-slate-900 sm:text-3xl">
+              SSS - Sporcu besinleri, bulk ve definasyon
+            </h2>
+            <div className="mt-6 space-y-4">
+              <article className="rounded-xl border border-slate-200 bg-white p-5">
+                <h3 className="text-base font-semibold text-slate-900">Bulk doneminde urun secimi nasil yapilir?</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                  Bulk doneminde hedeflenen kalori, antrenman duzeni ve urun icerigi birlikte degerlendirilmelidir.
+                  Etiket, porsiyon ve kullanim bilgileri secim surecinde temel referanstir.
+                </p>
+              </article>
+              <article className="rounded-xl border border-slate-200 bg-white p-5">
+                <h3 className="text-base font-semibold text-slate-900">Definasyon doneminde neye dikkat edilmeli?</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                  Definasyon surecinde hedefe uygun kategori secimi, beslenme planiyla uyum ve urun etiketlerinin dikkatli
+                  okunmasi onemlidir.
+                </p>
+              </article>
+              <article className="rounded-xl border border-slate-200 bg-white p-5">
+                <h3 className="text-base font-semibold text-slate-900">Urun bilgilerini nerede gorebilirim?</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                  Her urun kartindan detay sayfasina gecerek aciklama, kategori ve fiyat bilgilerini gorebilirsiniz.
+                </p>
+              </article>
+            </div>
           </div>
         </section>
 

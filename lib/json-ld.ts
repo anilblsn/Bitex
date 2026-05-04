@@ -51,6 +51,39 @@ export function buildHomePageJsonLd(productList: Product[]) {
   };
 }
 
+export function buildHomePageFaqJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "Bulk doneminde hangi urunler tercih edilir?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Bulk doneminde hedefe gore kalori ve antrenman planina uyumlu urun secimi yapilir. Urun etiketindeki icerik, kullanim ve porsiyon bilgileri dikkatle incelenmelidir.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Definasyon doneminde urun secimi nasil yapilir?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Definasyon doneminde hedef, beslenme plani ve antrenman yogunluguna gore urun secimi yapilir. Kategori karsilastirmasi ve etiket bilgileri dogru secim icin onemlidir.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Urun icerik ve saklama bilgilerine nereden ulasabilirim?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Her urun detay sayfasinda aciklama, fiyat, kategori ve etiket odakli bilgilendirme alanlari bulunur. Parti ve saklama bilgileri urun ambalajinda yer alir.",
+        },
+      },
+    ],
+  };
+}
+
 export function buildProductDetailJsonLd(product: Product) {
   const base = getSiteUrl();
   const pageUrl = `${base}/urunler/${product.slug}`;

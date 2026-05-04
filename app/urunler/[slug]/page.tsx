@@ -30,10 +30,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const url = `/urunler/${product.slug}`;
   const title = `${product.name} | Bitex`;
   const description = `${product.description} ${product.longDescription}`.slice(0, 160);
+  const keywords = [
+    "sporcu besinleri",
+    "vucut gelistirme",
+    "bulk",
+    "definasyon",
+    product.name,
+    product.category,
+  ];
 
   return {
     title,
     description,
+    keywords,
     alternates: { canonical: url },
     openGraph: {
       type: "website",

@@ -1,4 +1,5 @@
 import { cookies } from "next/headers";
+import type { Metadata } from "next";
 import { ADMIN_COOKIE_NAME } from "@/lib/admin-auth";
 import { categoryLabels, categoryOrder } from "@/lib/categories";
 import { getProducts } from "@/lib/products";
@@ -12,6 +13,19 @@ type AdminPageProps = {
     productDeleted?: string;
     deleteError?: string;
   }>;
+};
+
+export const metadata: Metadata = {
+  title: "Admin Panel",
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
 };
 
 export default async function AdminPage({ searchParams }: AdminPageProps) {
