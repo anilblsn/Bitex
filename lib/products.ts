@@ -147,6 +147,7 @@ type CreateProductInput = {
   longDescription: string;
   priceTry: number;
   category: ProductCategoryId;
+  imageSrc?: string;
 };
 
 export async function createProduct(input: CreateProductInput): Promise<Product> {
@@ -162,7 +163,7 @@ export async function createProduct(input: CreateProductInput): Promise<Product>
     description: input.description.trim(),
     longDescription: input.longDescription.trim(),
     priceTry: input.priceTry,
-    imageSrc: "/product-placeholder.svg",
+    imageSrc: input.imageSrc?.trim() || "/product-placeholder.svg",
     category: input.category,
   };
 

@@ -7,10 +7,10 @@ export async function POST(request: Request) {
   const nextPath = String(formData.get("next") ?? "/admin");
 
   if (password !== ADMIN_PASSWORD) {
-    return NextResponse.redirect(new URL("/admin?error=1", request.url));
+    return NextResponse.redirect(new URL("/admin?error=1", request.url), 303);
   }
 
-  const response = NextResponse.redirect(new URL(nextPath, request.url));
+  const response = NextResponse.redirect(new URL(nextPath, request.url), 303);
   response.cookies.set({
     name: ADMIN_COOKIE_NAME,
     value: "ok",

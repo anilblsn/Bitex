@@ -7,19 +7,19 @@ export async function POST(request: Request) {
   const cookieStore = await cookies();
   const isLoggedIn = cookieStore.get(ADMIN_COOKIE_NAME)?.value === "ok";
   if (!isLoggedIn) {
-    return NextResponse.redirect(new URL("/admin?error=1", request.url));
+    return NextResponse.redirect(new URL("/admin?error=1", request.url), 303);
   }
 
   const formData = await request.formData();
   const id = String(formData.get("id") ?? "").trim();
   if (!id) {
-    return NextResponse.redirect(new URL("/admin?deleteError=1", request.url));
+    return NextResponse.redirect(new URL("/admin?deleteError=1", request.url), 303);
   }
 
   const deleted = await deleteProductById(id);
   if (!deleted) {
-    return NextResponse.redirect(new URL("/admin?deleteError=1", request.url));
+    return NextResponse.redirect(new URL("/admin?deleteError=1", request.url), 303);
   }
 
-  return NextResponse.redirect(new URL("/admin?productDeleted=1", request.url));
+  return NextResponse.redirect(new URL("/admin?productDeleted=1", request.url), 303);
 }
