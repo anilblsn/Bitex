@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/Navbar";
 import { ProductCard } from "@/components/ProductCard";
+import type { Metadata } from "next";
 import { categoryAnchors, categoryIntros, categoryOrder } from "@/lib/categories";
 import { buildHomePageJsonLd } from "@/lib/json-ld";
 import { featuredProductsSectionId } from "@/lib/product-constants";
@@ -57,6 +58,21 @@ const heroFeatures = [
 
 export const dynamic = "force-dynamic";
 
+export const metadata: Metadata = {
+  title: "Sporcu Besinleri ve Vucut Gelistirme Takviyeleri",
+  description:
+    "Bulk ve definasyon hedeflerine uygun sporcu besinleri, peptit ve steroid kategorileriyle Bitex'te.",
+  keywords: [
+    "sporcu besinleri",
+    "vucut gelistirme takviyeleri",
+    "bulk urunleri",
+    "definasyon urunleri",
+    "peptit urunleri",
+    "steroid urunleri",
+  ],
+  alternates: { canonical: "/" },
+};
+
 export default async function HomePage() {
   const featuredProducts = await getFeaturedProductsOrdered();
   const jsonLd = buildHomePageJsonLd(featuredProducts);
@@ -82,7 +98,7 @@ export default async function HomePage() {
               Bitex — neden biz?
             </h1>
             <p className="mx-auto mt-3 max-w-2xl text-center text-sm text-slate-600 sm:text-base">
-              Takviye edici gıda alışverişinizde kargo, ödeme ve şeffaflık önceliğimizdir.
+              Sporcu besinleri, bulk ve definasyon odaklı ürün alışverişinizde kargo, ödeme ve şeffaflık önceliğimizdir.
             </p>
 
             <ul className="mt-10 grid list-none gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
@@ -164,6 +180,19 @@ export default async function HomePage() {
                 </li>
               ))}
             </ul>
+          </div>
+        </section>
+
+        <section className="border-y border-slate-100 bg-white py-14 sm:py-16" aria-labelledby="goals-heading">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <h2 id="goals-heading" className="text-2xl font-bold text-slate-900 sm:text-3xl">
+              Bulk ve definasyon hedeflerine uygun ürün seçimi
+            </h2>
+            <p className="mt-4 max-w-4xl text-slate-600">
+              Bitex, vücut geliştirme sürecinde farklı dönem ihtiyaçlarına odaklanır. Bulk döneminde hacim ve performans
+              hedeflerine, definasyon döneminde ise daha kontrollü beslenme planlarına eşlik edebilecek ürün kategorileri
+              sunar. Ürünleri kategori, içerik ve fiyat bazında karşılaştırarak kendi antrenman planınıza uygun seçim yapabilirsiniz.
+            </p>
           </div>
         </section>
 

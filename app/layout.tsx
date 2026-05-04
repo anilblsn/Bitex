@@ -14,18 +14,28 @@ const siteUrl = getSiteUrl();
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Bitex | Takviye Edici Gıdalar ve Besin Destekleri",
+    default: "Bitex | Sporcu Besinleri, Bulk ve Definasyon Takviyeleri",
     template: "%s | Bitex",
   },
   description:
-    "Bitex ile protein, vitamin, mineral ve diğer besin desteklerini keşfedin. Kaliteli takviye edici gıdalar, şeffaf içerik ve güvenilir marka.",
+    "Bitex, vücut geliştirme odaklı sporcu besinleri ve takviyeler sunar. Bulk hacim dönemi ve definasyon dönemine uygun ürünleri keşfedin.",
   keywords: [
     "Bitex",
+    "sporcu besinleri",
+    "vücut geliştirme",
+    "fitness takviyeleri",
+    "bulk",
+    "bulk dönemi",
+    "definasyon",
+    "definasyon dönemi",
+    "kas kazanımı",
+    "yağ yakımı dönemi",
     "takviye edici gıda",
     "besin desteği",
     "protein",
-    "vitamin",
-    "supplement",
+    "peptit",
+    "steroid",
+    "supplement store",
     "Türkiye",
   ],
   authors: [{ name: "Bitex" }],
@@ -44,16 +54,16 @@ export const metadata: Metadata = {
     locale: "tr_TR",
     url: "/",
     siteName: "Bitex",
-    title: "Bitex | Takviye Edici Gıdalar ve Besin Destekleri",
+    title: "Bitex | Sporcu Besinleri, Bulk ve Definasyon Takviyeleri",
     description:
-      "Kaliteli takviye edici gıdalar ve besin destekleri. Bitex ürünleri ile sağlıklı yaşamı destekleyin.",
+      "Vücut geliştirme odaklı ürünler: sporcu besinleri, bulk ve definasyon dönemine uygun takviye seçenekleri.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Bitex | Takviye Edici Gıdalar",
-    description: "Kaliteli takviye edici gıdalar ve besin destekleri.",
+    title: "Bitex | Sporcu Besinleri ve Takviyeler",
+    description: "Bulk ve definasyon dönemine uygun sporcu besinleri ve vücut geliştirme odaklı ürünler.",
   },
-  category: "health",
+  category: "sports nutrition",
 };
 
 export const viewport: Viewport = {

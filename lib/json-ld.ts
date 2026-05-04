@@ -14,7 +14,7 @@ export function buildHomePageJsonLd(productList: Product[]) {
         name: "Bitex",
         url: base,
         description:
-          "Bitex, kaliteli takviye edici gıdalar ve besin destekleri sunan güvenilir bir markadır.",
+          "Bitex, sporcu besinleri, bulk dönemi ve definasyon dönemi odaklı ürünler sunan bir vücut geliştirme mağazasıdır.",
         logo: `${base}/product-placeholder.svg`,
       },
       {
@@ -27,7 +27,7 @@ export function buildHomePageJsonLd(productList: Product[]) {
       },
       {
         "@type": "ItemList",
-        name: "Bitex öne çıkan ürünleri",
+        name: "Bitex sporcu besinleri ve öne çıkan ürünler",
         itemListElement: productList.map((p, index) => ({
           "@type": "ListItem",
           position: index + 1,
